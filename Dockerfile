@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY target/course-registration-1.0.0.jar app.jar
+COPY course-registration-1.0.0.jar app.jar
 
 EXPOSE 8080
 
