@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>DevOps Free Course Registration</title>
 
     <link rel="stylesheet" th:href="@{/style.css}">
@@ -11,81 +11,130 @@
 
 <body>
 
-<div class="container">
+<div class="page">
 
-    <div class="card">
+    <div class="hero">
 
-        <h1>DevOps Free Course</h1>
+        <div class="hero-content">
 
-        <p class="subtitle">
-            Register now and start your DevOps journey now/anytime.
-        </p>
+            <div class="badge">
+                🚀 FREE DEVOPS COURSE
+            </div>
 
-        <div th:if="${successMessage}" class="success">
-            <span th:text="${successMessage}"></span>
+            <h1>
+                Start Your
+                <span>DevOps Journey</span>
+                Today
+            </h1>
+
+            <p class="hero-text">
+                Learn practical DevOps skills and build real-world
+                experience with modern cloud and automation tools.
+            </p>
+
+            <div class="features">
+                <div>
+                    <strong>☁️ AWS</strong>
+                    <span>Cloud Infrastructure</span>
+                </div>
+
+                <div>
+                    <strong>🐳 Docker</strong>
+                    <span>Containerization</span>
+                </div>
+
+                <div>
+                    <strong>⚙️ Jenkins</strong>
+                    <span>CI/CD Automation</span>
+                </div>
+
+                <div>
+                    <strong>🏗️ Terraform</strong>
+                    <span>Infrastructure as Code</span>
+                </div>
+            </div>
+
         </div>
 
-        <div th:if="${emailError}" class="error">
-            <span th:text="${emailError}"></span>
+        <div class="registration-card">
+
+            <div class="card-header">
+                <h2>Register for the Course</h2>
+                <p>Fill in your details to get started.</p>
+            </div>
+
+            <form th:action="@{/register}" th:object="${registration}" method="post">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        th:field="*{name}"
+                        placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        th:field="*{email}"
+                        placeholder="you@example.com"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        th:field="*{phone}"
+                        placeholder="10-digit mobile number"
+                        maxlength="10"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Choose Course</label>
+
+                    <select id="course" th:field="*{course}" required>
+                        <option value="">Select a course</option>
+                        <option value="DevOps Fundamentals">DevOps Fundamentals</option>
+                        <option value="AWS & Cloud">AWS & Cloud</option>
+                        <option value="Docker & Kubernetes">Docker & Kubernetes</option>
+                        <option value="CI/CD with Jenkins">CI/CD with Jenkins</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Register Now
+                    <span>→</span>
+                </button>
+
+            </form>
+
+            <div class="success-message" th:if="${successMessage}">
+                <span>✓</span>
+                <p th:text="${successMessage}"></p>
+            </div>
+
+            <div class="error-message" th:if="${errorMessage}">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
+            <div class="secure-note">
+                🔒 Your information is securely submitted.
+            </div>
+
         </div>
-
-        <form th:action="@{/register}"
-              th:object="${registration}"
-              method="post">
-
-            <label for="name">Full Name</label>
-            <input type="text"
-                   id="name"
-                   th:field="*{name}"
-                   placeholder="Enter your full name">
-
-            <div class="field-error"
-                 th:if="${#fields.hasErrors('name')}"
-                 th:errors="*{name}">
-            </div>
-
-            <label for="email">Email Address</label>
-            <input type="email"
-                   id="email"
-                   th:field="*{email}"
-                   placeholder="Enter your email">
-
-            <div class="field-error"
-                 th:if="${#fields.hasErrors('email')}"
-                 th:errors="*{email}">
-            </div>
-
-            <label for="phone">Phone Number</label>
-            <input type="text"
-                   id="phone"
-                   th:field="*{phone}"
-                   placeholder="10-digit phone number">
-
-            <div class="field-error"
-                 th:if="${#fields.hasErrors('phone')}"
-                 th:errors="*{phone}">
-            </div>
-
-            <label for="course">Select Course</label>
-            <select id="course" th:field="*{course}">
-                <option value="">Select a course</option>
-                <option value="DevOps Fundamentals">DevOps Fundamentals</option>
-                <option value="AWS & DevOps">AWS & DevOps</option>
-                <option value="Docker & Jenkins">Docker & Jenkins</option>
-            </select>
-
-            <div class="field-error"
-                 th:if="${#fields.hasErrors('course')}"
-                 th:errors="*{course}">
-            </div>
-
-            <button type="submit">
-                Register Now
-            </button>
-
-        </form>
 
     </div>
+
+    <footer>
+        <p>DevOps Free Course • Learn • Build • Automate</p>
+    </footer>
 
 </div>
 
